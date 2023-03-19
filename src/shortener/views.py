@@ -26,6 +26,10 @@ class RetrieveShortLinkAPIView(RetrieveAPIView):
 
 class ShortLinkRedirectView(RedirectView):
 
+    @method_decorator(cache_page(settings.SHORT_URL_CACHE_TIME))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_redirect_url(self, **kwargs):
         short_link = get_object_or_404(ShortLink, code=self.kwargs['code'])
         return short_link.url
