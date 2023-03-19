@@ -14,4 +14,4 @@ class RandomCodeGenerator:
         return get_random_string(length=length, allowed_chars=cls.BASE_STR)
 
 
-code_generator = RandomCodeGenerator()
+code_generator = RandomCodeGenerator
