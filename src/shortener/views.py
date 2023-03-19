@@ -20,8 +20,8 @@ class RetrieveShortLinkAPIView(RetrieveAPIView):
     lookup_field = 'code'
 
     @method_decorator(cache_page(settings.SHORT_URL_CACHE_TIME))
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ShortLinkRedirectView(RedirectView):

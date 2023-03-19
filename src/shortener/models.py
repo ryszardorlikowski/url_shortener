@@ -4,8 +4,8 @@ from .services.code_generator import code_generator
 
 
 class ShortLink(models.Model):
-    url = models.URLField()
     code = models.CharField(max_length=10, unique=True)
+    url = models.URLField()
 
     def save(self, *args, **kwargs):
         if not self.code:
@@ -19,4 +19,3 @@ class ShortLink(models.Model):
             return
 
         super().save(*args, **kwargs)
-
