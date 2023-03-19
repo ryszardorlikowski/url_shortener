@@ -3,11 +3,7 @@ from django.conf import settings
 from django.db import IntegrityError
 
 from shortener.factories import ShortLinkFactory
-
-
-@pytest.fixture
-def test_url() -> str:
-    return 'http://test.com/test'
+from shortener.models import ShortLink
 
 
 @pytest.mark.django_db
@@ -17,6 +13,7 @@ def test_create_link_object(test_url):
     """
     short_link = ShortLinkFactory(url=test_url)
 
+    assert ShortLink.objects.count() == 1
     assert short_link.url == test_url
     assert type(short_link.code) == str
     assert len(short_link.code) == settings.SHORT_URL_CODE_LENGTH
