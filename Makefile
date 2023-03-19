@@ -14,4 +14,4 @@ createsuperuser:
 	docker-compose exec web ./manage.py createsuperuser
 
 test:
-	docker-compose exec web pytest tests
+	docker-compose exec web pytest tests/ -s

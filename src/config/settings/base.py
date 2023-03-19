@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     # project apps
-    'core',
+    'shortener',
 ]
 
 
@@ -102,7 +102,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.shortener.mail.backends.console.EmailBackend'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -139,3 +139,6 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
     ),
 }
+
+
+SHORT_URL_CODE_LENGTH = 10
