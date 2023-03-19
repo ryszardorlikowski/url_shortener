@@ -16,7 +16,24 @@ def test_create_short_url_view(api_client, test_url):
     assert response.status_code == 201
     short_link = ShortLink.objects.first()
     response_data = response.json()
+    assert response_data['code'] == short_link.code
     assert response_data['url'] == test_url
+    assert response_data['shortUrl'] == f"http://testserver/{short_link.code}"
+
+
+@pytest.mark.django_db
+def test_get_create_short_url_view(api_client, test_url):
+    """
+    Test checking the return of an existing link if it already exists
+    """
+    short_link = ShortLinkFactory(url=test_url)
+    payload = {'url': short_link.url}
+
+    response = api_client.post(reverse('create_short_link'), payload)
+
+    response_data = response.json()
+    assert response_data['code'] == short_link.code
+    assert response_data['url'] == short_link.url
     assert response_data['shortUrl'] == f"http://testserver/{short_link.code}"
 
 

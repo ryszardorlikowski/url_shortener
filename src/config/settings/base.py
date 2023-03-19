@@ -15,7 +15,6 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", False)
 
 CORS_ORIGIN_WHITELIST = env.list("DJANGO_CORS_ORIGIN_WHITELIST", False)
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -27,13 +26,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # installed apps
+    'rest_framework',
     'drf_yasg',
     'corsheaders',
 
     # project apps
     'shortener',
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,7 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -83,7 +81,6 @@ DATABASES = {
     }
 }
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -95,12 +92,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
 
 EMAIL_BACKEND = 'django.shortener.mail.backends.console.EmailBackend'
 
@@ -122,11 +117,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Custom application settings, everything above here are django settings.
 
 TEST_MODE = sys.argv[1:2] == ['test']
-
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -140,5 +133,5 @@ REST_FRAMEWORK = {
     ),
 }
 
-
 SHORT_URL_CODE_LENGTH = 10
+SHORT_URL_CACHE_TIME = 60 * 60 * 48  # 2 days
