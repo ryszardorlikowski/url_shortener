@@ -1,4 +1,4 @@
-setup:
+setup-project:
 	cp .env.example .env
 
 migrate:
@@ -13,5 +13,5 @@ shell:
 createsuperuser:
 	docker-compose exec web ./manage.py createsuperuser
 
-test:
+run-tests:
 	docker-compose exec web pytest tests/ -s
